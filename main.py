@@ -34,14 +34,16 @@ while nextPage<5:
                 titles.append(title.text)
         nextButton = browser.find_element(By.CLASS_NAME,("next-button"))
         nextPage += 1
+        print("Page read! redirecting to next page...")
         nextButton.click()
     except:
         break
 
-
+print("Writing in CSV format...")
 location = os.path.join(os.path.dirname(__file__),'results.csv')
 with open(location,'w',newline='',encoding="utf-8") as file:
     wr = csv.writer(file)
+#    wr.writerows([titles])
     for t in titles:
-        wr.writerow(t)
+       wr.writerow([t])
     file.close()
